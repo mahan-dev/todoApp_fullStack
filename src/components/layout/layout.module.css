@@ -1,0 +1,14 @@
+
+
+.header {
+   background: #2f45ff;
+   @apply  flex h-[150px];
+}
+
+
+.sidebar {
+   @apply flex text-[#A9A9A9] bg-white min-h-[calc(100vh-150px)];
+}
+.sidebar__container {
+   @apply w-[200px]  bg-inherit px-4 relative rounded-tr-xl -top-[calc(150px/1.7)];
+}
