@@ -2,7 +2,7 @@
 
 .header {
    background: #2f45ff;
-   @apply  flex h-[150px];
+   @apply  flex p-4 h-[150px];
 }
 
 
@@ -11,4 +11,8 @@
 }
 .sidebar__container {
    @apply w-[200px]  bg-inherit px-4 relative rounded-tr-xl -top-[calc(150px/1.7)];
+}
+
+.container__list > li{
+   @apply flex items-center gap-2
 }

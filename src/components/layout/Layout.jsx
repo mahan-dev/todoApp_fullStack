@@ -2,33 +2,43 @@ import Link from "next/link";
 import React from "react";
 import styles from "./layout.module.css";
 
+// icons
+import { FaListUl } from "react-icons/fa";
+import { CgAddR } from "react-icons/cg";
+import { IoPersonCircle } from "react-icons/io5";
+
 const Layout = ({ children }) => {
   return (
     <>
       <header className={`${styles.header}`}>
-        <p className="p-4">Todo App</p>
+        <p className=" flex-grow">Todo App</p>
+
+        <Link href={"/sign-up"}>signUp</Link>
       </header>
       <section className="flex">
         <section className={`${styles.sidebar}`}>
           <aside className={`${styles.sidebar__container}`}>
             <p>Welcome</p>
-            <ul>
-              <li >
-                <Link href={"/"}>Todos</Link>
+            <ul className={`${styles.container__list}`}>
+              <li>
+                <FaListUl />
+                <Link href={"/todos"}>Todos</Link>
               </li>
-              <li >
-                <Link href={""}>Add-Todo</Link>
+              <li>
+                <CgAddR />
+                <Link href={"add-post"}>Add-Todo</Link>
               </li>
-              <li >
-                <Link href={""}>Profile</Link>
+              <li>
+                <IoPersonCircle />
+                <Link href={"/profile"}>Profile</Link>
               </li>
             </ul>
           </aside>
         </section>
-        <main className="mx-2"> hello {children}</main>
+        <main className="w-full mx-2"> {children}</main>
       </section>
 
-      {/* <footer>footer</footer> */}
+      <footer>footer</footer>
     </>
   );
 };
