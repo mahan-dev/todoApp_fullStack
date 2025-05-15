@@ -5,8 +5,7 @@ const signUpValidation = (form) => {
     duration: 2000,
   };
   const { email, password } = form;
-  console.log(form);
-  console.log(email);
+
 
   if (!email || !password) {
     toast.error("Invalid Data", duration);

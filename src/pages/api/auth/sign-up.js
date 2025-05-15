@@ -22,10 +22,11 @@ const handler = async (req, res) => {
 
   const existUser = await User.findOne({ email: email });
   if (existUser) {
-    return res.status(401).json({
+    res.status(401).json({
       status: "Failed",
       message: "User already exist's",
     });
+    return;
   }
   const encryptedPassword = await hashPassword(password);
   const newUser = await User.create({

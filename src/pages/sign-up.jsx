@@ -1,12 +1,13 @@
+import { SignUpHandler } from "@/helper/signUpHandler";
 import { signUpValidation } from "@/helper/signUpValidation";
-import { Button } from "@mui/material";
-import axios from "axios";
+import { Button, Typography } from "@mui/material";
+import Link from "next/link";
 import { useRouter } from "next/router";
+
 import React, { useEffect, useState } from "react";
-import toast from "react-hot-toast";
 
 export const InputForm = (props) => {
-  const { name, value, type, placeholder, className } = props;
+  const { name, value, type, placeholder, className, onChange } = props;
 
   return (
     <>
@@ -14,8 +15,9 @@ export const InputForm = (props) => {
         className={className}
         name={name}
         type={type}
-        placeholder={placeholder ? placeholder : ""}
+        placeholder={placeholder}
         value={value}
+        onChange={onChange}
       />
     </>
   );
@@ -26,6 +28,7 @@ const SignUp = () => {
     email: "",
     password: "",
   });
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     console.log(form);
@@ -53,9 +56,6 @@ const SignUp = () => {
   ];
 
   const router = useRouter();
-  const duration = {
-    duration: 2000,
-  };
 
   const sendHandler = async (e) => {
     e.preventDefault();
@@ -63,31 +63,15 @@ const SignUp = () => {
     const isValid = signUpValidation(form);
     if (!isValid) return;
 
-    try {
-      const res = await axios.post("/api/auth/sign-up", form);
-      const data = await res.data;
-      const success = data.status === "Success";
-      if (success) {
-        toast.success(data.message, duration);
-        await new Promise((resolver) => setTimeout(resolver, 2000));
-        router.reload();
-      } else {
-        toast.error("something went wrong", duration);
-      }
-    } catch (error) {
-      toast.error("something went wrong", duration);
-    }
+    const res = await SignUpHandler(form, setLoading);
+    if (res) router.push("/sign-in");
   };
 
   return (
     <section className="flex flex-col justify-center my-4 items-center">
       <h2 className="my-3">SignUp</h2>
 
-      <form
-        onSubmit={sendHandler}
-        onChange={changeHandler}
-        className="flex flex-col gap-3"
-      >
+      <form onSubmit={sendHandler} className="flex flex-col gap-3 w-[300px]">
         {formFields.map((item) => {
           const { name, type, placeholder } = item;
 
@@ -98,24 +82,32 @@ const SignUp = () => {
                 className="rounded-lg"
                 value={form[name]}
                 type={type}
+                onChange={changeHandler}
                 placeholder={placeholder}
               />
             </React.Fragment>
           );
         })}
         <Button
-        
-        sx={{
-          borderRadius:'0.5rem',
-          fontSize: "0.8em"
-        }}
-        type="submit"
-        variant="contained"
-        
+          sx={{
+            borderRadius: "0.5rem",
+            fontSize: "0.8em",
+          }}
+          type="submit"
+          variant="contained"
+          disabled={loading}
         >
           Send
         </Button>
-       
+        <div className="flex items-center gap-2">
+          <Typography
+            sx={{ fontSize: "1.2rem", color: "#1976d2" }}
+            component={"p"}
+          >
+            already have an account ?
+          </Typography>
+          <Link href={"/sign-in"}>signIn</Link>
+        </div>
       </form>
     </section>
   );
