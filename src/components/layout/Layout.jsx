@@ -6,6 +6,7 @@ import styles from "./layout.module.css";
 import { FaListUl } from "react-icons/fa";
 import { CgAddR } from "react-icons/cg";
 import { IoPersonCircle } from "react-icons/io5";
+import { getSession } from "next-auth/react";
 
 const Layout = ({ children }) => {
   return (
@@ -18,7 +19,7 @@ const Layout = ({ children }) => {
       <section className="flex">
         <section className={`${styles.sidebar}`}>
           <aside className={`${styles.sidebar__container}`}>
-            <p>Welcome</p>
+            <p>Welcome 👋</p>
             <ul className={`${styles.container__list}`}>
               <li>
                 <FaListUl />
@@ -44,3 +45,17 @@ const Layout = ({ children }) => {
 };
 
 export default Layout;
+export const getServerSideProps = async ({ req }) => {
+  const session = await getSession({ req });
+  if (session) {
+    return {
+      redirect: {
+        destination: "/",
+        permanent: false,
+      },
+    };
+  }
+  return {
+    props: {session},
+  };
+};

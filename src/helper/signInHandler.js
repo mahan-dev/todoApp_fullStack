@@ -7,8 +7,7 @@ export const SignInHandler = async (form, setLoading) => {
   const duration = {
     duration: 2000,
   };
-  if(!email || !password) return toast.error("please fill-out form", duration)
- 
+  if (!email || !password) return toast.error("please fill-out form", duration);
 
   setLoading(true);
   const res = await signIn("credentials", {
@@ -16,13 +15,14 @@ export const SignInHandler = async (form, setLoading) => {
     password: password,
     redirect: false,
   });
-  console.log(res);
 
   const success = res?.status === 200;
-  console.log(res.status);
   const errorMessage = "something went wrong";
-  if (success) toast.success("loggedIn", duration);
-  else if (res?.status === 401)
+
+  if (success) {
+    toast.success("loggedIn", duration);
+    return true;
+  } else if (res.status === 401)
     toast.error("user or pass is incorrect", duration);
   else toast.error(errorMessage, duration);
   setLoading(false);

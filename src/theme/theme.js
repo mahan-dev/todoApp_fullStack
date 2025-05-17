@@ -12,6 +12,13 @@ const theme = createTheme({
         },
       },
     },
+    MuiTypography: {
+      styleOverrides: {
+        root: {
+          textTransform: "none",
+        },
+      },
+    },
   },
 });
 

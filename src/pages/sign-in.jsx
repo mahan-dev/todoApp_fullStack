@@ -1,87 +1,20 @@
-import { Button, Typography } from "@mui/material";
-import Link from "next/link";
-import React, { useState } from "react";
-import { InputForm } from "./sign-up";
-import { SignInHandler } from "@/helper/signInHandler";
-
+import { getSession } from "next-auth/react";
+import { PageValidation } from "@/helper/PageValidation";
+import SignInPage from "@/components/template/SignInPage";
 
 const SignIn = () => {
-  const [form, setForm] = useState({
-    email: "",
-    password: "",
-  });
-  const [loading, setLoading] = useState(false);
-
-  const formFields = [
-    {
-      name: "email",
-      type: "text",
-      placeholder: "email",
-    },
-    {
-      name: "password",
-      type: "password",
-      placeholder: "password",
-    },
-  ];
-
-  const changeHandler = (e) => {
-    const { name, value } = e.target;
-    setForm({
-      ...form,
-      [name]: value,
-    });
-  };
-
-  const sendHandler = async (e) => {
-    e.preventDefault();
-    await SignInHandler(form, setLoading);
-   
-  };
-  return (
-    <section className="flex flex-col justify-center my-4 items-center">
-      <h2 className="my-3">SignIn</h2>
-
-      <form onSubmit={sendHandler} className="flex flex-col gap-3 w-[300px]">
-        {formFields.map((item) => {
-          const { name, type, placeholder } = item;
-
-          return (
-            <React.Fragment key={name}>
-              <InputForm
-                name={name}
-                className="rounded-lg"
-                value={form[name]}
-                type={type}
-                onChange={changeHandler}
-                placeholder={placeholder}
-              />
-            </React.Fragment>
-          );
-        })}
-        <Button
-          sx={{
-            borderRadius: "0.5rem",
-            fontSize: "0.8em",
-          }}
-          type="submit"
-          variant="contained"
-          disabled={loading}
-        >
-          Send
-        </Button>
-        <div className="flex items-center gap-2">
-          <Typography
-            sx={{ fontSize: "1.2rem", color: "#1976d2" }}
-            component={"p"}
-          >
-            don't have an account ?
-          </Typography>
-          <Link href={"/sign-up"}>signUp</Link>
-        </div>
-      </form>
-    </section>
-  );
+  return <SignInPage />;
 };
 
 export default SignIn;
+
+export const getServerSideProps = async ({ req }) => {
+  const session = await getSession({ req });
+  if (session) return PageValidation(session);
+
+  return {
+    props: {
+      session,
+    },
+  };
+};
