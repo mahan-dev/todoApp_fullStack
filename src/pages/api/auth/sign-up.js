@@ -24,7 +24,7 @@ const handler = async (req, res) => {
   if (existUser) {
     res.status(401).json({
       status: "Failed",
-      message: "User already exist's",
+      message: "User already exist's 😢",
     });
     return;
   }
@@ -36,7 +36,7 @@ const handler = async (req, res) => {
 
   res.status(201).json({
     status: "Success",
-    message: "Successfully created",
+    message: "Successfully created ✔",
     data: newUser,
   });
 };

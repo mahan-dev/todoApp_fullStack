@@ -66,15 +66,10 @@ const SignUpPage = () => {
 
   return (
     <section className="flex justify-center ">
-      <section
-        className=" flex flex-col justify-center mt-8 px-8 py-5 rounded-lg items-center"
-        style={{
-          boxShadow: "0px 4px 12px rgba(0,0,0,3)",
-        }}
-      >
+      <section className="signup">
         <h2 className="my-3">SignUp</h2>
 
-        <form onSubmit={sendHandler} className="flex flex-col gap-3 w-[300px]">
+        <form onSubmit={sendHandler} className="signup__form">
           {formFields.map((item) => {
             const { name, type, placeholder } = item;
 
@@ -102,7 +97,7 @@ const SignUpPage = () => {
           >
             Send
           </Button>
-          <div className="flex items-center gap-2">
+          <div className="form-footer">
             <Typography
               sx={{ fontSize: "1.2rem", color: "#1976d2" }}
               component={"p"}

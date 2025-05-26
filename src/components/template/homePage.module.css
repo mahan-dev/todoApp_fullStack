@@ -1,0 +1,5 @@
+.home-page {
+    @apply grid mt-3 gap-4 text-center;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+}
+

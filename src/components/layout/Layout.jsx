@@ -27,7 +27,7 @@ const Layout = ({ children }) => {
               </li>
               <li>
                 <CgAddR />
-                <Link href={"add-post"}>Add-Todo</Link>
+                <Link href={"add-todo"}>Add-Todo</Link>
               </li>
               <li>
                 <IoPersonCircle />

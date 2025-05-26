@@ -1,0 +1,12 @@
+
+.signup{
+    @apply flex flex-col justify-center mt-8 px-8 py-5 rounded-lg items-center;
+    box-shadow: 0 4px 12px rgba(0,0,0,1)
+}
+
+.signup__form{
+    @apply flex flex-col gap-3 w-[300px];
+}
+.form-footer {
+    @apply flex items-center gap-2;
+}
