@@ -1,12 +1,13 @@
 import { sortedTodos } from "@/helper/sortedTodo";
 import User from "@/models/User";
 import { getSession } from "next-auth/react";
-
-const { default: connectDb } = require("@/utils/ConnectDb");
+import connectDb from "@/utils/ConnectDb";
 
 const handler = async (req, res) => {
   const get = req.method === "GET";
   const post = req.method === "POST";
+  const patch = req.method === "PATCH";
+
   try {
     await connectDb();
   } catch {
@@ -36,7 +37,6 @@ const handler = async (req, res) => {
 
   if (post) {
     const { title, status } = req.body;
-    console.log(req.body);
 
     if (!title || !status) {
       return res
@@ -58,8 +58,24 @@ const handler = async (req, res) => {
     res.status(201).json({ status: "Success", message: "Todo created 👏" });
   } else if (get) {
     const sorted = sortedTodos(user.todos);
-
     res.status(200).json({ status: "Success", data: { todos: sorted } });
+  } else if (patch) {
+    const { id, status } = req.body;
+
+    if (!id || !status) {
+      return res.status(422).json({
+        status: "Failed",
+        message: "Data is Invalid",
+      });
+    }
+
+    const result = await User.updateOne(
+      { "todos._id": id },
+      { $set: { "todos.$.status": status } }
+    );
+
+    console.log(result)
+    return res.status(200).json({status:"Success", message: "Changed 😃"})
   }
 };
 export default handler;

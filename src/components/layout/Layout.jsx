@@ -12,7 +12,9 @@ const Layout = ({ children }) => {
   return (
     <>
       <header className={`${styles.header}`}>
-        <p className=" flex-grow">Todo App</p>
+        <p className=" flex-grow">
+          <Link href="/">Todo App</Link>
+        </p>
 
         <Link href={"/sign-up"}>signUp</Link>
       </header>
@@ -36,7 +38,7 @@ const Layout = ({ children }) => {
             </ul>
           </aside>
         </section>
-        <main className="w-full mx-2"> {children}</main>
+        <main className="w-full p-4"> {children}</main>
       </section>
 
       <footer>footer</footer>
@@ -56,6 +58,6 @@ export const getServerSideProps = async ({ req }) => {
     };
   }
   return {
-    props: {session},
+    props: { session },
   };
 };

@@ -1,0 +1,34 @@
+.tasks {
+    @apply flex flex-col gap-4 text-black rounded-b-lg px-2 py-4 bg-white;
+
+}
+
+
+.todo {
+    @apply  bg-yellow-400;
+}
+
+.done {
+    
+    @apply bg-orange-600
+}
+
+.review {
+    @apply bg-green-600;
+}
+
+.inprogress {
+    @apply bg-red-600;
+}
+
+.todo,
+.done,
+.review,
+.inprogress{
+ @apply block w-[50%] h-1 mb-2 rounded-lg;
+}
+
+.tasks__card {
+    @apply py-3 px-2 rounded-lg;
+    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.2);
+}

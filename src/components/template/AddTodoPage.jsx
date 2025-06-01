@@ -37,9 +37,6 @@ const AddTodoPage = () => {
     });
   };
 
-  useEffect(() => {
-    console.log(todo);
-  }, [todo]);
 
   const radioButtonLists = [
     {
