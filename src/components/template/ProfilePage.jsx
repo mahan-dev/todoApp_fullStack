@@ -24,15 +24,13 @@ const ProfilePage = () => {
 
   return (
     <section>
-
-        <ProfileForm name={name} lastName={lastName} password={password} changeHandler={changeHandler} />
-
-        
-      {/* <form  className="form-profile">
-        <input name="name" type="text" value={name} onChange={changeHandler} />
-        <input name="lastName" type="text" value={lastName} onChange={changeHandler} />
-        <input name="password" type="password" value={password} onChange={changeHandler} />
-      </form> */}
+      <ProfileForm
+        name={name}
+        lastName={lastName}
+        password={password}
+        form={form}
+        changeHandler={changeHandler}
+      />
     </section>
   );
 };

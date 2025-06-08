@@ -1,7 +1,6 @@
 import ProfilePage from "@/components/template/ProfilePage";
 import { PageNotValidate } from "@/helper/PageValidation";
 import { getSession } from "next-auth/react";
-import React from "react";
 
 const profile = () => {
   return <ProfilePage />;

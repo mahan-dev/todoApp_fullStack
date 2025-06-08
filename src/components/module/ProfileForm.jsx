@@ -1,8 +1,38 @@
-import { Button } from "@mui/material";
+import { Button, duration } from "@mui/material";
+import axios from "axios";
+import { useRouter } from "next/router";
+import { useEffect } from "react";
+import toast from "react-hot-toast";
 import { CgProfile } from "react-icons/cg";
 
 const ProfileForm = (props) => {
-  const { name, lastName, password, changeHandler } = props;
+  const { name, lastName, password, form, changeHandler } = props;
+  const router = useRouter();
+
+  const sendHandler = async () => {
+    try {
+      const res = await axios.post("/api/profile", form);
+      const data = res.data;
+      console.log(data);
+      if (data.status === "Success") {
+        toast.success("updated!", { duration: 2000 });
+        await new Promise((resolver) => setTimeout(resolver, 2000));
+        router.reload();
+      }
+    } catch (error) {
+      const message = error.status === 422;
+      if (message) {
+        toast.error("password is incorrect", {
+          duration: 2000,
+        });
+      }
+    }
+  };
+
+  useEffect(() => {
+    console.log(form);
+  }, [form]);
+
   return (
     <section className="flex flex-col">
       <div className="flex items-center">
@@ -34,7 +64,9 @@ const ProfileForm = (props) => {
           value={password}
           onChange={changeHandler}
         />
-        <Button variant="contained">save</Button>
+        <Button onClick={sendHandler} variant="contained">
+          save
+        </Button>
       </form>
     </section>
   );

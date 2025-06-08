@@ -10,11 +10,7 @@ const handler = async (req, res) => {
   } catch (error) {
     return res.status(500).json({ message: "Database connection failed" });
   }
-
-  const get = req.method === "GET";
   const post = req.method === "POST";
-
-  if (!get) return res.status(405).json({ message: "Method not allowed" });
 
   const session = await getSession({ req });
   if (!session)
@@ -26,6 +22,7 @@ const handler = async (req, res) => {
     return res
       .status(404)
       .json({ status: "Failed", message: "User not found" });
+
   if (post) {
     const { name, lastName, password } = req.body;
     const isValid = await verifyPassword(password, user.password);
@@ -34,6 +31,7 @@ const handler = async (req, res) => {
       return res
         .status(422)
         .json({ status: "Failed", message: "Invalid password" });
+
     user.name = name;
     user.lastName = lastName;
     await user.save();
