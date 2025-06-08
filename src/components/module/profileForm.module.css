@@ -1,0 +1,16 @@
+.form-profile {
+    @apply flex flex-col  w-[500px] max-md:w-auto;
+    
+}
+
+.form-profile > input {
+    @apply rounded-lg ;
+}
+
+.form-profile > label {
+    @apply mt-4 mb-2;
+}
+
+.form-profile > button {
+    @apply flex self-end mt-5 text-lg w-fit;
+}

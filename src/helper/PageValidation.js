@@ -2,7 +2,7 @@ export const PageValidation = (token) => {
   if (token) {
     return {
       redirect: {
-        destination: "/dashboard",
+        destination: "/profile",
         permanent: false,
       },
     };

@@ -29,6 +29,6 @@
 }
 
 .tasks__card {
-    @apply py-3 px-2 rounded-lg;
+    @apply  py-3 px-2 rounded-lg;
     box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.2);
 }

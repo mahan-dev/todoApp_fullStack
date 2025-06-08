@@ -40,7 +40,7 @@ const SignInPage = () => {
     const signInRes = await SignInHandler(form, setLoading);
     if (signInRes) {
       await new Promise((resolver) => setTimeout(resolver, 2000));
-      router.push("/dashboard");
+      router.push("/profile");
     }
   };
   return (
