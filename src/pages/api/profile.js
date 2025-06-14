@@ -1,7 +1,6 @@
 import User from "@/models/User";
 import { verifyPassword } from "@/utils/auth";
 import connectDb from "@/utils/ConnectDb";
-import { data } from "autoprefixer";
 import { getSession } from "next-auth/react";
 
 const handler = async (req, res) => {
@@ -11,6 +10,7 @@ const handler = async (req, res) => {
     return res.status(500).json({ message: "Database connection failed" });
   }
   const post = req.method === "POST";
+  const get = req.method === "GET";
 
   const session = await getSession({ req });
   if (!session)
@@ -45,6 +45,8 @@ const handler = async (req, res) => {
         email: email,
       },
     });
+  } else if (get) {
+    res.status(200).json({ status: "Success", message: "success", data: user });
   }
 };
 

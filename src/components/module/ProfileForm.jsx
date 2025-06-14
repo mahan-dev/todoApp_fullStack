@@ -1,5 +1,5 @@
-import { Button, duration } from "@mui/material";
-import axios from "axios";
+import { ProfileApi } from "@/helper/profileUpdateApi";
+import { Button } from "@mui/material";
 import { useRouter } from "next/router";
 import { useEffect } from "react";
 import toast from "react-hot-toast";
@@ -10,23 +10,17 @@ const ProfileForm = (props) => {
   const router = useRouter();
 
   const sendHandler = async () => {
-    try {
-      const res = await axios.post("/api/profile", form);
-      const data = res.data;
-      console.log(data);
-      if (data.status === "Success") {
-        toast.success("updated!", { duration: 2000 });
-        await new Promise((resolver) => setTimeout(resolver, 2000));
-        router.reload();
-      }
-    } catch (error) {
-      const message = error.status === 422;
-      if (message) {
-        toast.error("password is incorrect", {
-          duration: 2000,
-        });
-      }
+    const state = await ProfileApi(form);
+    if (state) {
+      toast.success("updated!", { duration: 2000 });
+      await new Promise((resolve) => setTimeout(resolve, 2000));
+      router.reload()
     }
+    // console.log(state)
+    // if (state) {
+    //   console.log(state)
+    //   router.reload();
+    // }
   };
 
   useEffect(() => {

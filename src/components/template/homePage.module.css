@@ -1,7 +1,12 @@
 .home-page {
     @apply grid gap-4 place-content-center text-center;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    /* grid-auto-rows: 1fr; */
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));    
     
 }
 
+@media only screen and (max-width: 992px) {
+    .home-page{
+        @apply my-3;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 450px));
+    }
+}

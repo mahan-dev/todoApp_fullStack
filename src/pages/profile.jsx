@@ -12,8 +12,6 @@ export const getServerSideProps = async ({ req }) => {
   const session = await getSession({ req });
   if (!session) return PageNotValidate(session);
   return {
-    props: {
-      session,
-    },
+    props: {},
   };
 };

@@ -15,7 +15,10 @@ const authOptions = {
         try {
           await connectDb();
         } catch {
-          throw new Error("error to connectDb");
+          return {
+            message: "can not connectDb",
+            status: 500,
+          };
         }
 
         if (!email || !password) throw new Error("Invalid Data");

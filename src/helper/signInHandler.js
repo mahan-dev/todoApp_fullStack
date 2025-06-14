@@ -10,20 +10,28 @@ export const SignInHandler = async (form, setLoading) => {
   if (!email || !password) return toast.error("please fill-out form", duration);
 
   setLoading(true);
-  const res = await signIn("credentials", {
-    email: email,
-    password: password,
-    redirect: false,
-  });
+  try {
+    const res = await signIn("credentials", {
+      email: email,
+      password: password,
+      redirect: false,
+    });
 
-  const success = res?.status === 200;
-  const errorMessage = "something went wrong";
+    const success = res?.status === 200;
+    const errorMessage = "something went wrong";
+    const connectionErrorDb = res.error
+      ? res?.error?.includes("ECONNRESET") || res?.error?.includes("timed out")
+      : "";
 
-  if (success) {
-    toast.success("loggedIn", duration);
-    return true;
-  } else if (res.status === 401)
-    toast.error("user or pass is incorrect", duration);
-  else toast.error(errorMessage, duration);
-  setLoading(false);
+    if (success) {
+      toast.success("loggedIn", duration);
+      return true;
+    } else if (connectionErrorDb) {
+      toast.error("can not connect to db", duration);
+    } else toast.error(errorMessage, duration);
+  } catch (error) {
+    return false;
+  } finally {
+    setLoading(false);
+  }
 };
