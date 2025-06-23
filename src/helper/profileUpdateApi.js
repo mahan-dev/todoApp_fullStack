@@ -1,5 +1,4 @@
 import axios from "axios";
-import toast from "react-hot-toast";
 
 export const ProfileApi = async (form) => {
   try {
@@ -10,8 +9,6 @@ export const ProfileApi = async (form) => {
       return true;
     }
   } catch (error) {
-    
-
     return false;
   }
 };
