@@ -83,7 +83,7 @@ const SignInPage = () => {
               sx={{ fontSize: "1.2rem", color: "#1976d2" }}
               component={"p"}
             >
-              don't have an account ?
+              don&apos;t have an account ?
             </Typography>
             <Link href={"/sign-up"}>signUp</Link>
           </div>
