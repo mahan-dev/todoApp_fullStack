@@ -1,7 +1,6 @@
 import { ProfileApi } from "@/helper/profileUpdateApi";
 import { Button } from "@mui/material";
 import { useRouter } from "next/router";
-import { useEffect } from "react";
 import toast from "react-hot-toast";
 import { CgProfile } from "react-icons/cg";
 
@@ -10,22 +9,21 @@ const ProfileForm = (props) => {
   const router = useRouter();
 
   const sendHandler = async () => {
+    if (!name || !lastName || !password) {
+      toast.error("field shouldn't be empty 😁", { duration: 2000 });
+      console.log(password)
+      console.log(form)
+      return;
+    }
     const state = await ProfileApi(form);
     if (state) {
       toast.success("updated!", { duration: 2000 });
       await new Promise((resolve) => setTimeout(resolve, 2000));
-      router.reload()
+      router.reload();
+    } else {
+      toast.error("failed to update 🙁", { duration: 2000 });
     }
-    // console.log(state)
-    // if (state) {
-    //   console.log(state)
-    //   router.reload();
-    // }
   };
-
-  useEffect(() => {
-    console.log(form);
-  }, [form]);
 
   return (
     <section className="flex flex-col">
@@ -50,6 +48,7 @@ const ProfileForm = (props) => {
           value={lastName}
           onChange={changeHandler}
         />
+
         <label htmlFor="password">password: </label>
         <input
           id="password"
@@ -58,6 +57,7 @@ const ProfileForm = (props) => {
           value={password}
           onChange={changeHandler}
         />
+
         <Button onClick={sendHandler} variant="contained">
           save
         </Button>

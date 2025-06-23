@@ -20,7 +20,7 @@ const Tasks = ({ data, next, back, dataFetcher }) => {
           <div className="flex justify-between mx-3 mb-2">
             {back && (
               <button
-                className="bg-red-500 rounded-lg px-2 text-white"
+                className="bg-red-500 rounded-md px-3 text-white"
                 onClick={() => changeStatus(item._id, back)}
               >
                 back
@@ -28,7 +28,7 @@ const Tasks = ({ data, next, back, dataFetcher }) => {
             )}
             {next && (
               <button
-                className="bg-green-600 rounded-lg px-2 text-white"
+                className="bg-green-600 rounded-md px-3 text-white"
                 onClick={() => changeStatus(item._id, next)}
               >
                 next

@@ -10,12 +10,8 @@ export const ProfileApi = async (form) => {
       return true;
     }
   } catch (error) {
-    const message = error.status === 422;
-    if (message) {
-      toast.error("password is incorrect", {
-        duration: 2000,
-      });
-    }
+    
+
     return false;
   }
 };

@@ -63,7 +63,6 @@ const HomePage = () => {
           </div>
         </>
       )}
-      {/* {isFetching && <h2>is loading...</h2>} */}
       {isError && <h2>something went wrong 🙁</h2>}
     </section>
   );

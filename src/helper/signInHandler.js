@@ -27,7 +27,7 @@ export const SignInHandler = async (form, setLoading) => {
       toast.success("loggedIn", duration);
       return true;
     } else if (connectionErrorDb) {
-      toast.error("can not connect to db", duration);
+      toast.error("can not connect to db ☹️", duration);
     } else toast.error(errorMessage, duration);
   } catch (error) {
     return false;
