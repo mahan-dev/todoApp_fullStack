@@ -9,10 +9,14 @@ const HomePage = () => {
       const res = await axios("/api/todos");
       return res.data?.data?.todos || {};
     } catch (error) {
-      console.log(error);
-      toast.error("failed to fetch todos", {
-        duration: 2000,
-      });
+      const Unauthorized = error?.response.status === 401;
+      if (Unauthorized) {
+        toast.error("Please login to continue", { duration: 2000 });
+      } else {
+        toast.error("failed to fetch todos", {
+          duration: 2000,
+        });
+      }
 
       return {};
     }

@@ -13,7 +13,7 @@ const Tasks = ({ data, next, back, dataFetcher }) => {
 
   return (
     <section className="tasks">
-      {data.map((item) => (
+      {data?.map((item) => (
         <div key={item._id} className="tasks__card">
           <span className={item.status}></span>
           <p className="my-4">{item.title}</p>
