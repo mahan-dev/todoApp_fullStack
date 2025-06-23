@@ -7,12 +7,14 @@ const HomePage = () => {
   const dataFetcher = async () => {
     try {
       const res = await axios("/api/todos");
-      return res.data.data.todos;
+      return res.data?.data?.todos || {};
     } catch (error) {
       console.log(error);
       toast.error("failed to fetch todos", {
         duration: 2000,
       });
+
+      return {};
     }
   };
 
