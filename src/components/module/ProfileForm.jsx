@@ -8,11 +8,12 @@ const ProfileForm = (props) => {
   const { name, lastName, password, form, changeHandler } = props;
   const router = useRouter();
 
-  const sendHandler = async () => {
+  const sendHandler = async (e) => {
+    e.preventDefault();
     if (!name || !lastName || !password) {
       toast.error("field shouldn't be empty 😁", { duration: 2000 });
-      console.log(password)
-      console.log(form)
+      console.log(password);
+      console.log(form);
       return;
     }
     const state = await ProfileApi(form);
@@ -31,7 +32,7 @@ const ProfileForm = (props) => {
         <CgProfile className="mr-2" />
         <h2>Profile</h2>
       </div>
-      <form className="form-profile">
+      <form onSubmit={sendHandler} className="form-profile">
         <label htmlFor="name">name:</label>
         <input
           id="name"
@@ -58,7 +59,7 @@ const ProfileForm = (props) => {
           onChange={changeHandler}
         />
 
-        <Button onClick={sendHandler} variant="contained">
+        <Button type="submit" variant="contained">
           save
         </Button>
       </form>
