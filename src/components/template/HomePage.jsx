@@ -33,7 +33,7 @@ const HomePage = () => {
   if (isFetching) {
     return (
       <section className="flex justify-center">
-        <h2 className="flex items-center min-h-[0vh] "> loading...</h2>
+        <h2 className="flex items-center min-h-screen "> loading...</h2>
       </section>
     );
   }
@@ -46,7 +46,6 @@ const HomePage = () => {
     <section className="home-page">
       {data && (
         <>
-          {console.log(data)}
           <div className="bg-white rounded-lg ">
             <p className="bg-yellow-400 py-1 rounded-t-lg">Todo</p>
 
@@ -78,7 +77,7 @@ const HomePage = () => {
           </div>
         </>
       )}
-      {isError && <h2>something went wrong 🙁</h2>}
+      {isError && <h2 className="min-h-[50vh]">something went wrong 🙁</h2>}
     </section>
   );
 };

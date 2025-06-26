@@ -3,6 +3,7 @@
 @tailwind utilities;
 @import "../pages//registerForm.module";
 /* @import "../module/input.module.css"; */
+@import "@/components/layout/layout.module.css";
 @import "@/components/template/signinPage.module.css";
 @import "@/components/template/signupPage.module.css";
 @import "@/components/template/homePage.module.css";
