@@ -53,6 +53,22 @@
    -o-transform: translateX(-100%);
 }
 
+
+
+.container__list {
+   @apply w-fit;
+}
+
+.container__list>li {
+   @apply flex items-center gap-2 w-full;
+}
+
+.container__list>li a{
+   @apply flex flex-grow
+}
+
+
+
 @media only screen and (max-width: 768px) {
    .sidebar {
       @apply -translate-x-full
@@ -69,8 +85,4 @@
       @apply relative translate-x-0
    }
 
-}
-
-.container__list>li {
-   @apply flex items-center gap-2
 }

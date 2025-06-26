@@ -23,7 +23,7 @@ const AddTodoPage = () => {
       }
     } catch (error) {
       const errorMessage = error.response.data.message || "Failed";
-      toast.error(errorMessage);
+      toast.error(errorMessage, {duration: 2000});
       console.log(errorMessage);
     }
   };

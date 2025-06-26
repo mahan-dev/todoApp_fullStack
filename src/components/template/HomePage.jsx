@@ -22,8 +22,12 @@ const HomePage = () => {
   function toastError() {
     if (error) {
       const unauthorized = error.response?.status === 401;
+      const serverError = error.response?.status === 500;
+
       if (unauthorized) {
         toast.error("please Login to continue", { duration: 2000 });
+      } else if (serverError) {
+        toast.error("error to connect db 🙁", { duration: 2000 });
       } else {
         toast.error("Something went wrong 🙁", { duration: 2000 });
       }

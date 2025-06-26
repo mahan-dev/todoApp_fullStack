@@ -10,7 +10,7 @@ import { getSession } from "next-auth/react";
 import { IoMenu } from "react-icons/io5";
 import { IoClose } from "react-icons/io5";
 
-const SidebarHandling = (isOpen, setIsOpen, buttonRef, sidebarRef) => {
+const SidebarHandler = (isOpen, setIsOpen, buttonRef, sidebarRef) => {
   const closeHandler = () => {
     if (!isOpen) return;
     const clickOutsideHandler = (event) => {
@@ -50,7 +50,11 @@ const Layout = ({ children }) => {
   //! Handle sidebar open/close
   //? and close on click outside
 
-  SidebarHandling(isOpen, setIsOpen, buttonRef, sidebarRef);
+  SidebarHandler(isOpen, setIsOpen, buttonRef, sidebarRef);
+  const menuHandler = (e) => {
+    const target = e.target;
+    if (target.closest("li")) setIsOpen(false);
+  };
 
   return (
     <>
@@ -85,10 +89,10 @@ const Layout = ({ children }) => {
         >
           <aside className={`${styles.sidebar__container}  `} ref={sidebarRef}>
             <p>Welcome 👋</p>
-            <ul className={`${styles.container__list}`}>
+            <ul className={`${styles.container__list}`} onClick={menuHandler}>
               <li>
                 <FaListUl />
-                <Link href={"/todos"}>Todos</Link>
+                <Link href={"/"}>Todos</Link>
               </li>
               <li>
                 <CgAddR />
