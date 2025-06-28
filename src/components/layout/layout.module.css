@@ -21,7 +21,7 @@
 }
 
 .sidebar__container {
-   @apply flex flex-col w-[200px] min-h-[calc(100vh-150px)] bg-white text-[#A9A9A9] py-3 px-4 relative z-10 rounded-tr-xl -top-[calc(100px/2.5)] max-md:pl-[65px] max-md:top-0 max-md:w-[250px];
+   @apply flex flex-col h-screen w-[200px] min-h-[calc(100vh-150px)] bg-white text-[#A9A9A9] py-3 px-4 relative z-10 rounded-tr-xl -top-[calc(100px/2.5)] max-md:pl-[65px] max-md:top-0 max-md:w-[250px];
 
 }
 
