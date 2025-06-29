@@ -26,7 +26,6 @@ const handler = async (req, res) => {
     const { todoId } = req.query;
     const { data } = req.body;
 
-  
     const result = await User.updateOne(
       { "todos._id": todoId },
       {
@@ -37,9 +36,8 @@ const handler = async (req, res) => {
       return res
         .status(404)
         .json({ status: "Failed", message: "todo not found" });
-    console.log(result);
 
-    return res.status(200).json({ message: "Todo updated", todoId });
+    return res.status(200).json({ message: "Todo updated", data: result });
   }
 };
 

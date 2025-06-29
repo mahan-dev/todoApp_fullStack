@@ -12,8 +12,6 @@ const ProfileForm = (props) => {
     e.preventDefault();
     if (!name || !lastName || !password) {
       toast.error("field shouldn't be empty 😁", { duration: 2000 });
-      console.log(password);
-      console.log(form);
       return;
     }
     const state = await ProfileApi(form);

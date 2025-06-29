@@ -10,17 +10,16 @@ const TodoId = () => {
     isReady,
     query: { todoId },
   } = router;
-  console.log(router.query);
+
   const dataFetcher = async () => {
+    if (!isReady) return;
     try {
       const res = await axios.get(`/api/${todoId}`, {
         headers: { "Cache-Control": "no-cache" },
       });
       const { data: receivedData } = res.data;
-      console.log(receivedData);
       setData(receivedData);
     } catch (error) {
-      console.log(error);
     }
   };
 
@@ -31,29 +30,3 @@ const TodoId = () => {
 };
 
 export default TodoId;
-
-// export const getServerSideProps = async (context) => {
-//   const { todoId: id } = context.query;
-
-//   try {
-//     await connectDb();
-//   } catch (error) {
-//     console.log(error, "error in connection");
-//   }
-//   const todoId = await User.findOne({ _id: id });
-//   console.log(todoId, "back");
-//   console.log(todoId);
-//   if (todoId) {
-//     return {
-//       props: {
-//         data: JSON.parse(JSON.stringify(todoId)),
-//       },
-//     };
-//   }
-
-//   return {
-//     props: {
-//       data: JSON.parse(JSON.stringify(todoId)),
-//     },
-//   };
-// };

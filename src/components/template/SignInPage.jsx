@@ -41,8 +41,6 @@ const SignInPage = () => {
     if (signInRes) {
       await new Promise((resolver) => setTimeout(resolver, 2000));
       router.push("/profile");
-    } else {
-      console.log(signInRes);
     }
   };
   return (

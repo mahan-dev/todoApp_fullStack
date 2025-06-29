@@ -1,3 +1,4 @@
+import { editHandler } from "@/helper/editHandler";
 import { Button } from "@mui/material";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
@@ -18,21 +19,7 @@ const TodoEdit = (props) => {
   const router = useRouter();
   const sendHandler = async (e) => {
     e.preventDefault();
-
-    if (value === "" || value.length < 3) {
-      toast.error("fill-out form carefully 😀", { duration: 2000 });
-    }
-    try {
-      const res = await axios.patch(`/api/${todoData._id}`, { data: value });
-      return res;
-    } catch (error) {
-      console.error("Error updating todo", error);
-      return;
-    } finally {
-      toast.success("update");
-      await new Promise((resolver) => setTimeout(resolver, 2000));
-      router.push("/");
-    }
+    await editHandler(router, value, todoData);
   };
   const { data, isFetching, isError } = useQuery({
     queryKey: ["todoEdit"],

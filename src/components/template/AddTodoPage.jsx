@@ -16,7 +16,6 @@ const AddTodoPage = () => {
       const res = await axios.post("/api/todos", todo);
       const data = res.data;
       const success = data.status === "Success";
-      console.log(data);
       if (success) {
         setTodo({ title: "", status: "todo" });
         toast.success(data.message);
@@ -24,7 +23,6 @@ const AddTodoPage = () => {
     } catch (error) {
       const errorMessage = error.response.data.message || "Failed";
       toast.error(errorMessage, {duration: 2000});
-      console.log(errorMessage);
     }
   };
 

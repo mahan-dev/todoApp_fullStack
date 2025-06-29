@@ -9,10 +9,8 @@ export const SignUpHandler = async (form, setLoading) => {
   try {
     const res = await axios.post("/api/auth/sign-up", form);
     const data = res.data;
-    console.log(res);
 
     const success = data.status === "Success";
-    console.log(data);
     if (success) {
       toast.success("an Account Created", duration);
       await new Promise((resolver) => setTimeout(resolver, 2000));
@@ -20,7 +18,6 @@ export const SignUpHandler = async (form, setLoading) => {
     setLoading(false);
     return true;
   } catch (error) {
-    console.log(error);
     const defaultMessage = "something went wrong";
     const message = error.response.data?.message;
     const displayMessage = message ? message : defaultMessage;
