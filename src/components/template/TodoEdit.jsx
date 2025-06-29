@@ -1,7 +1,6 @@
 import { editHandler } from "@/helper/editHandler";
 import { Button } from "@mui/material";
 import { useQuery } from "@tanstack/react-query";
-import axios from "axios";
 import { useRouter } from "next/router";
 import React, { useState } from "react";
 import toast from "react-hot-toast";
@@ -19,7 +18,12 @@ const TodoEdit = (props) => {
   const router = useRouter();
   const sendHandler = async (e) => {
     e.preventDefault();
-    await editHandler(router, value, todoData);
+    const res = await editHandler(router, value, todoData);
+    if (res) {
+      toast.success("Updated");
+      await new Promise((resolver) => setTimeout(resolver, 2000));
+      router.push("/");
+    }
   };
   const { data, isFetching, isError } = useQuery({
     queryKey: ["todoEdit"],
