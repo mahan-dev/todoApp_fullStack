@@ -33,12 +33,15 @@ const ProfilePage = () => {
           "cache-control": "no-cache",
         },
       });
+
       const { data } = res.data;
       setUserDetails(data);
       return data;
+
     } catch (error) {
-      const message = error.status === 500;
+      const message = error.response?.status === 500;
       if (message) toast.error("error to connect db🙁", { duration: 2000 });
+      throw error;
     }
   };
   const { refetch, isFetching } = useQuery({
