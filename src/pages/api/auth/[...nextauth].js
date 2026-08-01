@@ -11,6 +11,8 @@ const authOptions = {
     CredentialsProvider({
       async authorize(credentials) {
         const { email, password } = credentials;
+        console.log("🌟 ~ [...nextauth].js:13 ~ email:", email);
+        console.log("💯 ~ [...nextauth].js:13 ~ password:", password);
 
         try {
           await connectDb();
@@ -25,7 +27,7 @@ const authOptions = {
         const user = await User.findOne({ email: email });
         if (!user) throw new Error("user doesn't exist");
         const isValid = await verifyPassword(password, user.password);
-        if (!isValid) throw new Error("password is valid");
+        if (!isValid) throw new Error("password is invalid");
 
         return {
           email,
