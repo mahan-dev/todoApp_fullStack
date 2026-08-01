@@ -7,13 +7,8 @@ export const SignUpHandler = async (form, setLoading) => {
   };
   setLoading(true);
 
-  const data = await axios.post("api/auth/test", {hi: "there"})
-  console.log(data)
-
-
-  return
   try {
-    const res = await axios.post("/api/auth/sign-up", form);
+    const res = await axios.post("api/auth/sign-up", form);
     const data = res.data;
 
     const success = data.status === "Success";
