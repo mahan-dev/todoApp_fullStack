@@ -11,7 +11,7 @@ const handler = async (req, res) => {
     });
   try {
     await connectDb();
-    const { email } = req.body;
+    const { email, password } = req.body;
 
     const existUser = await User.findOne({ email: email });
     if (existUser) {
