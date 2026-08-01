@@ -11,21 +11,21 @@ const handler = async (req, res) => {
     });
   try {
     await connectDb();
-    const { email, password } = req.body;
+    // const { email, password } = req.body;
 
-    const existUser = await User.findOne({ email: email });
-    if (existUser) {
-      res.status(401).json({
-        status: "Failed",
-        message: "User already exist's 😢",
-      });
-      return;
-    }
-    const encryptedPassword = await hashPassword(password);
-    const newUser = await User.create({
-      email: email,
-      password: encryptedPassword,
-    });
+    // const existUser = await User.findOne({ email: email });
+    // if (existUser) {
+    //   res.status(401).json({
+    //     status: "Failed",
+    //     message: "User already exist's 😢",
+    //   });
+    //   return;
+    // }
+    // const encryptedPassword = await hashPassword(password);
+    // const newUser = await User.create({
+    //   email: email,
+    //   password: encryptedPassword,
+    // });
 
     return res.status(201).json({
       status: "Success",
