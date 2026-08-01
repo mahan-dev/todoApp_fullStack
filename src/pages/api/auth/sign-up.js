@@ -1,5 +1,5 @@
 import User from "@/models/User";
-// import { hashPassword } from "@/utils/auth";
+import { hashPassword } from "@/utils/auth";
 import connectDb from "@/utils/ConnectDb";
 
 const handler = async (req, res) => {
