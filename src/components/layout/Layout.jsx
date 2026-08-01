@@ -58,10 +58,12 @@ const Layout = ({ children }) => {
 
   return (
     <>
-      <header className={`${styles.header}`}>
+      <header className={`${styles.header} text-[1.2rem]`}>
         <div className="flex flex-col flex-grow">
           <p>
-            <Link href="/">Todo App</Link>
+            <Link className="font-medium" href="/">
+              Todo App
+            </Link>
           </p>
           <button
             className={`${styles.burger_button} ${isOpen ? "" : "static"}`}
@@ -79,7 +81,9 @@ const Layout = ({ children }) => {
           </button>
         </div>
 
-        <Link href={"/sign-up"}>signUp</Link>
+        <Link className="h-fit" href={"/sign-up"}>
+          signUp
+        </Link>
       </header>
       <section className="flex">
         <section

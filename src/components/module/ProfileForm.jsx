@@ -5,11 +5,14 @@ import toast from "react-hot-toast";
 import { CgProfile } from "react-icons/cg";
 
 const ProfileForm = (props) => {
-  const { name, lastName, password, form, changeHandler } = props;
+  const { form, changeHandler } = props;
+
   const router = useRouter();
 
   const sendHandler = async (e) => {
+    const { name, lastName, password } = form;
     e.preventDefault();
+
     if (!name || !lastName || !password) {
       toast.error("field shouldn't be empty 😁", { duration: 2000 });
       return;
@@ -36,7 +39,7 @@ const ProfileForm = (props) => {
           id="name"
           name="name"
           type="text"
-          value={name}
+          value={form.name}
           onChange={changeHandler}
         />
         <label htmlFor="lastName">lastName:</label>
@@ -44,7 +47,7 @@ const ProfileForm = (props) => {
           id="lastName"
           name="lastName"
           type="text"
-          value={lastName}
+          value={form.lastName}
           onChange={changeHandler}
         />
 
@@ -53,7 +56,7 @@ const ProfileForm = (props) => {
           id="password"
           name="password"
           type="password"
-          value={password}
+          value={form.password}
           onChange={changeHandler}
         />
 

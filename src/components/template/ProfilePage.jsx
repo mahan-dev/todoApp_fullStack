@@ -8,7 +8,6 @@ import { useRouter } from "next/router";
 import { signOutHandler as signOut } from "@/helper/signoutHandler";
 
 const ProfilePage = () => {
- 
   const [form, setForm] = useState({
     name: "",
     lastName: "",
@@ -16,8 +15,6 @@ const ProfilePage = () => {
   });
   const [userDetails, setUserDetails] = useState(null);
   const [isEditing, setIsEditing] = useState(false);
-
-  const { name, lastName, password } = form;
 
   const changeHandler = (e) => {
     const { name, value } = e.target;
@@ -36,6 +33,7 @@ const ProfilePage = () => {
       });
 
       const { data } = res.data;
+
       setUserDetails(data);
       return data;
     } catch (error) {
@@ -57,7 +55,7 @@ const ProfilePage = () => {
       setForm({
         name: name || "",
         lastName: lastName || "",
-        password: password || "",
+        password: "",
       });
     }
   };
@@ -87,9 +85,7 @@ const ProfilePage = () => {
     return (
       <ProfileForm
         form={form}
-        name={name}
-        lastName={lastName}
-        password={password}
+        setForm={setForm}
         changeHandler={changeHandler}
       />
     );

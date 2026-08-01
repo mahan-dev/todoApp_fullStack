@@ -44,6 +44,7 @@ const Tasks = ({ data, next, back, dataFetcher }) => {
           </div>
         </div>
       ))}
+      {!data?.length && "No item has found😞"}
     </section>
   );
 };
