@@ -27,7 +27,7 @@ const handler = async (req, res) => {
       password: encryptedPassword,
     });
 
-    res.status(201).json({
+    return res.status(201).json({
       status: "Success",
       message: "Successfully created ✔",
       data: newUser,
