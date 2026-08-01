@@ -1,5 +1,3 @@
-import User from "@/models/User";
-import { hashPassword } from "@/utils/auth";
 import connectDb from "@/utils/ConnectDb";
 
 const handler = async (req, res) => {
@@ -11,26 +9,10 @@ const handler = async (req, res) => {
     });
   try {
     await connectDb();
-    // const { email, password } = req.body;
 
-    // const existUser = await User.findOne({ email: email });
-    // if (existUser) {
-    //   res.status(401).json({
-    //     status: "Failed",
-    //     message: "User already exist's 😢",
-    //   });
-    //   return;
-    // }
-    // const encryptedPassword = await hashPassword(password);
-    // const newUser = await User.create({
-    //   email: email,
-    //   password: encryptedPassword,
-    // });
-
-    return res.status(201).json({
+    return res.status(200).json({
       status: "Success",
-      message: "Successfully created ✔",
-      data: newUser,
+      message: "DB connected successfully",
     });
   } catch (err) {
     console.error("DB Error:", err);
