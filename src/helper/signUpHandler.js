@@ -15,7 +15,7 @@ export const SignUpHandler = async (form, setLoading) => {
       toast.success("an Account Created", duration);
       await new Promise((resolver) => setTimeout(resolver, 2000));
     }
-    setLoading(false);
+
     return true;
   } catch (error) {
     const defaultMessage = "something went wrong";
@@ -23,7 +23,9 @@ export const SignUpHandler = async (form, setLoading) => {
     const displayMessage = message ? message : defaultMessage;
 
     if (error.status === 401) toast.error(displayMessage, duration);
-    setLoading(false);
+
     return false;
+  } finally {
+    setLoading(false);
   }
 };

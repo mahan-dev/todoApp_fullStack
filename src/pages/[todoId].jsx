@@ -10,6 +10,7 @@ const TodoId = () => {
     isReady,
     query: { todoId },
   } = router;
+  
 
   const dataFetcher = async () => {
     if (!isReady) return;
@@ -18,6 +19,8 @@ const TodoId = () => {
         headers: { "Cache-Control": "no-cache" },
       });
       const { data: receivedData } = res.data;
+
+      console.log(data)
       setData(receivedData);
     } catch (error) {
     }

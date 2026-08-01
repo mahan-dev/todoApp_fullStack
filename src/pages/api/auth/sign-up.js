@@ -11,10 +11,12 @@ const handler = async (req, res) => {
     });
   try {
     await connectDb();
-  } catch {
+  } catch (err) {
+    console.error("DB Error:", err);
+
     return res.status(500).json({
       status: "Failed",
-      message: "error happened to connectDb",
+      message: err.message,
     });
   }
 

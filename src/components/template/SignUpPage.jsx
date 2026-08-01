@@ -58,6 +58,7 @@ const SignUpPage = () => {
     e.preventDefault();
 
     const isValid = signUpValidation(form);
+
     if (!isValid) return;
 
     const res = await SignUpHandler(form, setLoading);

@@ -18,7 +18,7 @@ const TodoEdit = (props) => {
   const router = useRouter();
   const sendHandler = async (e) => {
     e.preventDefault();
-    const res = await editHandler(router, value, todoData);
+    const res = await editHandler(value, todoData);
     if (res) {
       toast.success("Updated");
       await new Promise((resolver) => setTimeout(resolver, 2000));

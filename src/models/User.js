@@ -18,6 +18,7 @@ const userSchema = new Schema(
     },
     todos: [
       {
+        id: Number,
         title: String,
         status: String,
       },

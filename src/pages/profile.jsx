@@ -10,6 +10,7 @@ export default profile;
 
 export const getServerSideProps = async ({ req }) => {
   const session = await getSession({ req });
+  console.log(session)
   if (!session) return PageNotValidate(session);
   return {
     props: {},

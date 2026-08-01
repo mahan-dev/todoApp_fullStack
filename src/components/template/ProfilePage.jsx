@@ -8,6 +8,7 @@ import { useRouter } from "next/router";
 import { signOutHandler as signOut } from "@/helper/signoutHandler";
 
 const ProfilePage = () => {
+ 
   const [form, setForm] = useState({
     name: "",
     lastName: "",
@@ -37,7 +38,6 @@ const ProfilePage = () => {
       const { data } = res.data;
       setUserDetails(data);
       return data;
-
     } catch (error) {
       const message = error.response?.status === 500;
       if (message) toast.error("error to connect db🙁", { duration: 2000 });
