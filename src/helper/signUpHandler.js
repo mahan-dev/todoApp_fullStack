@@ -6,6 +6,11 @@ export const SignUpHandler = async (form, setLoading) => {
     duration: 2000,
   };
   setLoading(true);
+
+  const data = await axios.post("api/auth/test", { hi: "there" });
+  console.log(data);
+
+  return;
   try {
     const res = await axios.post("/api/auth/sign-up", form);
     const data = res.data;
