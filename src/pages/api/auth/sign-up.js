@@ -5,7 +5,7 @@ import connectDb from "@/utils/ConnectDb";
 const handler = async (req, res) => {
   const Post = req.method === "POST";
   if (!Post)
-    return res.status(405).json({ 
+    return res.status(405).json({
       status: "Failed",
       message: "method not allowed",
     });
@@ -21,11 +21,11 @@ const handler = async (req, res) => {
       });
       return;
     }
-    // const encryptedPassword = await hashPassword(password);
-    // const newUser = await User.create({
-    //   email: email,
-    //   password: encryptedPassword,
-    // });
+    const encryptedPassword = await hashPassword(password);
+    const newUser = await User.create({
+      email: email,
+      password: encryptedPassword,
+    });
 
     return res.status(201).json({
       status: "Success",
