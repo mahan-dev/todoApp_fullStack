@@ -1,5 +1,5 @@
 import User from "@/models/User";
-import { hashPassword } from "@/utils/auth";
+// import { hashPassword } from "@/utils/auth";
 import connectDb from "@/utils/ConnectDb";
 
 const handler = async (req, res) => {
@@ -11,7 +11,7 @@ const handler = async (req, res) => {
     });
   try {
     await connectDb();
-    const { email, password } = req.body;
+    const { email } = req.body;
 
     const existUser = await User.findOne({ email: email });
     if (existUser) {
@@ -21,11 +21,11 @@ const handler = async (req, res) => {
       });
       return;
     }
-    const encryptedPassword = await hashPassword(password);
-    const newUser = await User.create({
-      email: email,
-      password: encryptedPassword,
-    });
+    // const encryptedPassword = await hashPassword(password);
+    // const newUser = await User.create({
+    //   email: email,
+    //   password: encryptedPassword,
+    // });
 
     return res.status(201).json({
       status: "Success",
